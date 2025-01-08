@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-
 import { IoPersonOutline } from "react-icons/io5";
 
-import { GoMail } from "react-icons/go";
 import { CiLock } from "react-icons/ci";
+import { GoMail } from "react-icons/go";
 
 function RegisterForm() {
 	return (
@@ -40,7 +38,7 @@ function RegisterForm() {
 					<div className="flex flex-row flex-shrink items-center border-b-2  w-full py-2 px-4 focus-within:border-mainColor transition duration-300">
 						<input
 							type="password"
-							placeholder="Enter yout password"
+							placeholder="Enter your password"
 							className=" w-full focus:outline-none"
 						/>
 
@@ -49,7 +47,20 @@ function RegisterForm() {
 						</span>
 					</div>
 				</div>
-				<div className="flex flex-row justify-around items-center w-full mt-2">
+				<div className="my-2 w-full group">
+					<div className="flex flex-row flex-shrink items-center border-b-2  w-full py-2 px-4 focus-within:border-mainColor transition duration-300">
+						<input
+							type="password"
+							placeholder="Confirm password"
+							className=" w-full focus:outline-none"
+						/>
+
+						<span className="flex-shrink-0 text-2xl transition duration-300  group-focus-within:text-mainColor">
+							<CiLock />
+						</span>
+					</div>
+				</div>
+				<div className="flex flex-row justify-around items-center w-full mt-4">
 					<div className="flex flex-row items-center space-x-2">
 						<input type="checkbox" className="w-4 h-4 accent-mainColor  " />
 						<label className="text-secondBlack text-sm">Student</label>

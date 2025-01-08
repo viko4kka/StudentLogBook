@@ -4,25 +4,40 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Register";
-import StudentPanel from "./pages/StudentPanel";
 import TeacherPanel from "./pages/TeacherPanel";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import StudentPanel from "./pages/StudentPanel";
+import AllCoursesStudents from "./pages/AllCoursesStudents";
+
+//create a client
+const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				{/* <Route index element={<Login />} /> */}
-				<Route path="login" element={<Login />} />
-				<Route path="register" element={<Register />} />
-				<Route path="dashboard" element={<Dashboard />} />
-				<Route path="teachers" element={<TeacherPanel />} />
-				<Route path="all-courses" element={<AllCoursesTeachers />} />
-				<Route path="students" element={<StudentPanel />} />
-				<Route path="all-courses" element={<AllCoursesTeachers />} />
-				<Route path="*" element={<PageNotFound />} />
-				<Route />
-			</Routes>
-		</BrowserRouter>
+		//provide the client to my app
+
+		<QueryClientProvider client={queryClient}>
+			<ReactQueryDevtools initialIsOpen={false} />
+			<BrowserRouter>
+				<Routes>
+					<Route path="dashboard" element={<Dashboard />} />
+					<Route path="teacher" element={<TeacherPanel />}>
+						<Route
+							path="all-courses-teacher"
+							element={<AllCoursesTeachers />}
+						/>
+					</Route>
+					<Route path="student" element={<StudentPanel />} />
+					<Route path="all-courses-student" element={<AllCoursesStudents />} />
+
+					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Register />} />
+					<Route path="*" element={<PageNotFound />} />
+					<Route />
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	);
 }
 
