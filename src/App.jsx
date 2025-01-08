@@ -21,16 +21,20 @@ function App() {
 			<ReactQueryDevtools initialIsOpen={false} />
 			<BrowserRouter>
 				<Routes>
-					<Route path="dashboard" element={<Dashboard />} />
 					<Route path="teacher" element={<TeacherPanel />}>
 						<Route
 							path="all-courses-teacher"
 							element={<AllCoursesTeachers />}
 						/>
 					</Route>
-					<Route path="student" element={<StudentPanel />} />
-					<Route path="all-courses-student" element={<AllCoursesStudents />} />
+					<Route path="student" element={<StudentPanel />}>
+						<Route
+							path="all-courses-student"
+							element={<AllCoursesStudents />}
+						/>
+					</Route>
 
+					<Route path="dashboard" element={<Dashboard />} />
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
 					<Route path="*" element={<PageNotFound />} />
