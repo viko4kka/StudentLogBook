@@ -1,6 +1,11 @@
 import { IoLogOutOutline } from "react-icons/io5";
 
+
+
+
 function Sidebar({ menuItems }) {
+	//useGetUser, 
+
 	return (
 		<div className="bg-white shadow-xl w-[330px] flex flex-col items-center justify-between h-screen">
 			<div className="h-screen flex flex-col items-center justify-between py-16 px-12 w-full">
@@ -20,6 +25,7 @@ function Sidebar({ menuItems }) {
 							</a>
 						</div>
 					))}
+					{/* user.role === "student" && <div>grades</div> */}
 				</div>
 
 				<div className="group w-full">

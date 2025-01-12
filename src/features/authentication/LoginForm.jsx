@@ -1,19 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { GoMail } from "react-icons/go";
+import { useState } from "react";
 import { CiLock } from "react-icons/ci";
+import { GoMail } from "react-icons/go";
+import { useLoginUser } from "../../hooks/useLogin";
 
 function LoginForm() {
+	const { loginUser, isLoading } = useLoginUser();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	function onSubmit() {
+		loginUser({ email, password });
+		console.log("Email:", email);
+		console.log("Password:", password);
+	}
+
+	const navigate = useNavigate();
+	const handleToRegister = () => {
+		navigate("/register");
+	};
+
 	return (
 		<div className="bg-white shadow-xl w-full max-w-[420px] flex flex-col justify-center items-center rounded  py-8 px-12">
 			<h4 className="text-secondBlack text-3xl font-semibold mb-4">Log in</h4>
-			<form className=" flex flex-col items-center justify-between w-full gap-y-1">
+			<div className=" flex flex-col items-center justify-between w-full gap-y-1">
 				<div className="my-2 w-full group">
 					<div className="flex items-center border-b-2 py-2 px-4 focus-within:border-mainColor transition duration-300">
 						<input
 							type="email"
+							disabled={isLoading}
 							placeholder="Enter your email address"
 							className="w-full focus:outline-none"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email} //to sie nazywa controlled input
 						/>
 						<span className="flex-shrink-0 text-xl transition duration-300  group-focus-within:text-mainColor">
 							<GoMail className="icon" />
@@ -24,8 +44,11 @@ function LoginForm() {
 					<div className="flex flex-row flex-shrink items-center border-b-2  w-full py-2 px-4 focus-within:border-mainColor transition duration-300">
 						<input
 							type="password"
+							disabled={isLoading}
 							placeholder="Enter yout password"
 							className=" w-full focus:outline-none"
+							onChange={(e) => setPassword(e.target.value)}
+							value={password}
 						/>
 
 						<span className="flex-shrink-0 text-2xl transition duration-300  group-focus-within:text-mainColor">
@@ -45,15 +68,20 @@ function LoginForm() {
 					</Link>
 				</div>
 				<div className="flex flex-col justify-center items-center  mt-8 w-full ">
-					<button className="text-xl px-14 py-1.5 before:ease relative overflow-hidden bg-gradient-to-r rounded-full font-medium  from-hoverMainColor to-firstGradientMainColor text-secondWhite shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:before:-translate-x-40">
+					<button
+						onClick={onSubmit}
+						disabled={isLoading}
+						className="text-xl px-14 py-1.5 style-before relative before:ease overflow-hidden bg-gradient-to-r rounded-full font-medium  from-hoverMainColor to-firstGradientMainColor text-secondWhite shadow-2xl transition-all  ">
 						Login
 					</button>
 				</div>
-			</form>
+			</div>
 			<div className="flex flex-row items-center justify-between gap-x-2 mt-8">
 				<p className="text-secondBlack">Don&apos;t have an account?</p>
 				<div>
-					<button className="text-secondBlack font-medium hover:text-mainColor transition duration-300">
+					<button
+						onClick={handleToRegister}
+						className="text-secondBlack font-medium hover:text-mainColor transition duration-300">
 						Register
 					</button>
 				</div>
