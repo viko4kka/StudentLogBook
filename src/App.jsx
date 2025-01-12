@@ -1,15 +1,11 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AllCoursesTeachers from "./pages/AllCoursesTeachers";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Register";
-import TeacherPanel from "./pages/TeacherPanel";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import StudentPanel from "./pages/StudentPanel";
-import AllCoursesStudents from "./pages/AllCoursesStudents";
-import { Toaster } from "react-hot-toast";
 
 //create a client
 const queryClient = new QueryClient();
@@ -22,7 +18,7 @@ function App() {
 				<ReactQueryDevtools initialIsOpen={false} />
 				<BrowserRouter>
 					<Routes>
-						<Route path="teacher" element={<TeacherPanel />}>
+						{/* <Route path="teacher" element={<TeacherPanel />}>
 							<Route
 								path="all-courses-teacher"
 								element={<AllCoursesTeachers />}
@@ -33,7 +29,7 @@ function App() {
 								path="all-courses-student"
 								element={<AllCoursesStudents />}
 							/>
-						</Route>
+						</Route> */}
 
 						<Route path="dashboard" element={<Dashboard />} />
 						<Route path="login" element={<Login />} />
