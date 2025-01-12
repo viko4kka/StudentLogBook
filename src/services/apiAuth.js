@@ -62,3 +62,33 @@ export async function loginUser({ email, password }) {
 		throw error;
 	}
 }
+
+export async function getUser() {
+	const token = localStorage.getItem("token");
+
+	if (!token) {
+		throw new Error("Brak tokena w localStorage!");
+	}
+
+	const getUserOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ token }),
+	};
+
+	try {
+		const response = await fetch(
+			urlRegister + "/auth/retrive-user",
+			getUserOptions
+		);
+
+		if (response.ok) {
+			return await response.json();
+		}
+	} catch (error) {
+		console.error("Błąd podczas pobierania danych użytkownika:", error);
+		throw error;
+	}
+}

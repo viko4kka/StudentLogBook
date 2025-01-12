@@ -1,9 +1,13 @@
 import { BsBook } from "react-icons/bs";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
+import { useGetUser } from "../hooks/useGetUser";
+import { useLogout } from "../hooks/useLogout";
 
-function Sidebar() {
-	//useGetUser,
+function Sidebar({ data }) {
+	const { logout } = useLogout();
+
+	console.log(data);
 
 	return (
 		<div className="bg-white shadow-xl w-[330px] flex flex-col items-center justify-between h-screen">
@@ -37,23 +41,36 @@ function Sidebar() {
 								<IoSettingsOutline />
 							</span>
 							<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
-							Settings
+								Settings
 							</p>
 						</a>
 					</div>
 
-					{/* user.role === "student" && <div>grades</div> */}
+					{data.data.role === "student" && (
+						<div className="group w-full">
+							<a className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
+								<span className="text-2xl px-3 text-secondBlack group-hover:text-mainColor transition-all duration-300 ">
+									<IoSettingsOutline />
+								</span>
+								<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
+									Grades
+								</p>
+							</a>
+						</div>
+					)}
 				</div>
 
 				<div className="group w-full">
-					<div className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverBgLogOut/70 w-full transition-all duration-300">
+					<button
+						onClick={logout}
+						className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverBgLogOut/70 w-full transition-all duration-300">
 						<span className="text-2xl px-3 text-secondBlack group-hover:text-white transition-all duration-300">
 							<IoLogOutOutline />
 						</span>
 						<p className="text-2xl rounded text-secondBlack group-hover:text-white transition-all duration-300">
 							Log out
 						</p>
-					</div>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -61,8 +78,6 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
-
 
 // import { BsBook } from "react-icons/bs";
 // import { HiOutlineCalendarDays } from "react-icons/hi2";
