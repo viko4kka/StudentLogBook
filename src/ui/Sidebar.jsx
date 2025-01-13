@@ -1,8 +1,13 @@
 import { BsBook } from "react-icons/bs";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
-import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+	IoLogOutOutline,
+	IoSchoolOutline,
+	IoSettingsOutline,
+} from "react-icons/io5";
 import { useGetUser } from "../hooks/useGetUser";
 import { useLogout } from "../hooks/useLogout";
+import { NavLink } from "react-router-dom";
 
 function Sidebar({ data }) {
 	const { logout } = useLogout();
@@ -15,48 +20,56 @@ function Sidebar({ data }) {
 				<div className="flex flex-col items-start gap-y-3 w-full">
 					<p className="text-5xl py-2">Logo</p>
 
-					<div className="group w-full">
-						<a className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
+					<button className="group w-full">
+						<NavLink
+							to="/dashboard/courses"
+							className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
 							<span className="text-2xl px-3 text-secondBlack group-hover:text-mainColor transition-all duration-300 ">
 								<BsBook />
 							</span>
 							<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
-								All courses
+								Subject
 							</p>
-						</a>
-					</div>
-					<div className="group w-full">
-						<a className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
+						</NavLink>
+					</button>
+					<button className="group w-full">
+						<NavLink
+							to="/dashboard/timetable"
+							className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
 							<span className="text-2xl px-3 text-secondBlack group-hover:text-mainColor transition-all duration-300 ">
 								<HiOutlineCalendarDays />
 							</span>
 							<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
 								Timetable
 							</p>
-						</a>
-					</div>
-					<div className="group w-full">
-						<a className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
+						</NavLink>
+					</button>
+					<button className="group w-full">
+						<NavLink
+							to="/dashboard/settings"
+							className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
 							<span className="text-2xl px-3 text-secondBlack group-hover:text-mainColor transition-all duration-300 ">
 								<IoSettingsOutline />
 							</span>
 							<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
 								Settings
 							</p>
-						</a>
-					</div>
+						</NavLink>
+					</button>
 
 					{data.data.role === "student" && (
-						<div className="group w-full">
-							<a className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
+						<button className="group w-full">
+							<NavLink
+								to="/dashboard/grades"
+								className="flex flex-row items-center space-x-2 py-3 px-3 group-hover:bg-hoverMainColor/20 w-full transition-all duration-300">
 								<span className="text-2xl px-3 text-secondBlack group-hover:text-mainColor transition-all duration-300 ">
-									<IoSettingsOutline />
+									<IoSchoolOutline />
 								</span>
 								<p className="text-2xl rounded text-secondBlack group-hover:text-mainColor transition-all duration-300">
 									Grades
 								</p>
-							</a>
-						</div>
+							</NavLink>
+						</button>
 					)}
 				</div>
 
@@ -78,44 +91,3 @@ function Sidebar({ data }) {
 }
 
 export default Sidebar;
-
-// import { BsBook } from "react-icons/bs";
-// import { HiOutlineCalendarDays } from "react-icons/hi2";
-// import { IoSettingsOutline } from "react-icons/io5";
-// import { IoSchoolOutline } from "react-icons/io5";
-
-// import AllCoursesStudents from "../../pages/AllCoursesStudents";
-
-// export const menuItemsStudent = [
-// 	{
-// 		icon: <BsBook />,
-// 		path: "https://www.google.com/",
-// 		name: "All courses",
-// 		element: <AllCoursesStudents />,
-// 		isMenu: true,
-// 		// isPrivate: ,
-// 	},
-// 	{
-// 		icon: <HiOutlineCalendarDays />,
-// 		path: "https://www.google.com/",
-// 		name: "Timetable",
-// 		element: <AllCoursesStudents />,
-// 		isMenu: true,
-// 		// isPrivate: ,
-// 	},
-// 	{
-// 		icon: <IoSchoolOutline />,
-// 		path: "https://www.google.com/",
-// 		name: "Grades",
-// 		element: <AllCoursesStudents />,
-// 		isMenu: true,
-// 	},
-// 	{
-// 		icon: <IoSettingsOutline />,
-// 		path: "https://www.google.com/",
-// 		name: "Settings",
-// 		element: <AllCoursesStudents />,
-// 		isMenu: true,
-// 		//
-// 	},
-// ];

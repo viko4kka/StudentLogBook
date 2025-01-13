@@ -2,7 +2,7 @@ import { BarLoader } from "react-spinners";
 import { useGetUser } from "../hooks/useGetUser";
 import Header from "../ui/Header";
 import Sidebar from "../ui/Sidebar";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Dashboard() {
 	const { data, isError, isLoading } = useGetUser();
@@ -26,6 +26,9 @@ function Dashboard() {
 					<Sidebar data={data} className="w-[330px] flex-shrink-0" />
 					<div className="flex flex-col flex-grow">
 						<Header />
+						<div className="flex-grow p-4">
+							<Outlet />
+						</div>
 					</div>
 				</>
 			)}
