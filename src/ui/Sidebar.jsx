@@ -5,9 +5,8 @@ import {
 	IoSchoolOutline,
 	IoSettingsOutline,
 } from "react-icons/io5";
-import { useGetUser } from "../hooks/useGetUser";
-import { useLogout } from "../hooks/useLogout";
 import { NavLink } from "react-router-dom";
+import { useLogout } from "../hooks/useLogout";
 
 function Sidebar({ data }) {
 	const { logout } = useLogout();
