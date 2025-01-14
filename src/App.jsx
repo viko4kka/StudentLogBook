@@ -2,16 +2,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Course from "./pages/Course";
+import Courses from "./pages/Courses";
 import Dashboard from "./pages/Dashboard";
+import Grades from "./pages/Grades";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Register";
-import Courses from "./pages/Courses";
-import Course from "./pages/Course";
-import Timetable from "./pages/Timetable";
 import Settings from "./pages/Settings";
-import Grades from "./pages/Grades";
-import AppLayout from "./ui/AppLayout";
+import Timetable from "./pages/Timetable";
 
 //create a client
 const queryClient = new QueryClient();

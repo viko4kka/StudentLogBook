@@ -1,7 +1,7 @@
 import { BarLoader } from "react-spinners";
+import AddCourse from "../features/courses/AddCourse";
 import { useCourses } from "../features/courses/useCourses";
 import ListCourses from "../ui/ListCourses";
-import Pagination from "../ui/Pagination";
 function Courses() {
 	const { data, isLoading, isError } = useCourses();
 
@@ -31,11 +31,7 @@ function Courses() {
 
 				{/* <Pagination  /> */}
 			</div>
-			<div className="flex flex-row space-x-2 justify-end mt-2 px-4">
-				<button className="px-3 py-1 rounded bg-mainColor hover:bg-hoverMainColor transition font-medium duration-300 text-white tracking-wide">
-					Add subjet
-				</button>
-			</div>
+			<AddCourse />
 		</div>
 	);
 }
