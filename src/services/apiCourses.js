@@ -31,7 +31,7 @@ export async function createCourse({ title, description, startDate, endDate }) {
 	};
 	try {
 		const response = await fetch(
-			urlRegister + "/course/create-course",
+			urlRegister + "/course/create",
 			createCourseOption
 		);
 
@@ -47,28 +47,3 @@ export async function createCourse({ title, description, startDate, endDate }) {
 		throw error;
 	}
 }
-
-// export async function deleteCourse({id}) {
-// 	const deleteCourseConfig = {
-// 		method: "DELETE",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 		},
-// 	};
-
-// 	try {
-// 		const response = await fetch(
-// 			urlRegister + "/course/delete/:id",
-// 			deleteCourseConfig
-// 		);
-
-// 		if (!response.ok) {
-// 			throw new Error(`Błąd: ${response.status} - ${response.statusText}`);
-// 		}
-
-// 		return await response.json();
-// 	} catch (error) {
-// 		console.error("Błąd podczas usuwania kursu:", error);
-// 		throw error;
-// 	}
-// }
