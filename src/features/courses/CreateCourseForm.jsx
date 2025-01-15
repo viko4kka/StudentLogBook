@@ -1,26 +1,62 @@
 import { useForm } from "react-hook-form";
 import { useCreateCourse } from "./useCreateCourse";
+import { useEffect } from "react";
+import { useEditCourse } from "./useEditCourse";
 
-function CreateCourseForm({ onCloseModal }) {
-	const { createCourse, isLoading } = useCreateCourse();
-	const { register, handleSubmit, reset } = useForm();
+function CreateCourseForm({ onCloseModal, initialData }) {
+	const { createCourse, isLoading: isLoadingCreate } = useCreateCourse();
+	const { isLoading: isLoadingEdit, updateCourse } = useEditCourse();
+	const { register, handleSubmit, reset, setValue } = useForm();
+	const isEditForm = initialData?.id !== undefined;
+	const isLoading = isLoadingEdit || isLoadingCreate;
+
+	console.log(isEditForm);
 
 	function onSubmit({ title, description, startDate, endDate }) {
-		createCourse(
-			{ title, description, startDate, endDate },
-			{
-				onSettled: () => {
-					reset();
-					onCloseModal?.();
-				},
-			}
-		);
+		if (isEditForm) {
+			updateCourse(
+				{ id: initialData.id, title, description, startDate, endDate },
+				{
+					onSettled: () => {
+						reset();
+						onCloseModal?.();
+					},
+				}
+			);
+		} else {
+			createCourse(
+				{ title, description, startDate, endDate },
+				{
+					onSettled: () => {
+						reset();
+						onCloseModal?.();
+					},
+				}
+			);
+		}
 	}
+
+	console.log(initialData);
+
+	useEffect(() => {
+		if (initialData) {
+			setValue("title", initialData.title);
+			setValue("description", initialData.description);
+			setValue(
+				"startDate",
+				new Date(initialData.startDate).toISOString().split("T")[0]
+			); // Konwersja na YYYY-MM-DD
+			setValue(
+				"endDate",
+				new Date(initialData.endDate).toISOString().split("T")[0]
+			); // Konwersja na YYYY-MM-DD
+		}
+	}, [initialData, setValue]);
 
 	return (
 		<div className="bg-white w-full max-w-[420px] flex flex-col justify-center items-center rounded  py-8 px-12">
 			<p className="text-secondBlack text-2xl font-semibold mb-6">
-				Add new subject
+				{isEditForm ? "Edit subject" : "Add new subject"}
 			</p>
 
 			<form
@@ -85,7 +121,7 @@ function CreateCourseForm({ onCloseModal }) {
 					disabled={isLoading}
 					onClick={handleSubmit(onSubmit)}
 					className="px-3 py-1 rounded bg-mainColor hover:bg-hoverMainColor transition font-medium duration-300 text-white tracking-wide">
-					Create new subject
+					{isEditForm ? "Edit subject" : "Create new subject"}
 				</button>
 			</div>
 		</div>

@@ -22,6 +22,7 @@ function AddCourse() {
 					<CreateCourseForm onCloseModal={() => setIsOpenModal(false)}/>
 				</Modal>
 			)}
+			
 		</div>
 	);
 }

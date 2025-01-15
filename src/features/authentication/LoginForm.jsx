@@ -45,7 +45,7 @@ function LoginForm() {
 						<input
 							type="password"
 							disabled={isLoading}
-							placeholder="Enter yout password"
+							placeholder="Enter your password"
 							className=" w-full focus:outline-none"
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
@@ -56,18 +56,8 @@ function LoginForm() {
 						</span>
 					</div>
 				</div>
-				<div className="flex flex-row justify-between items-center w-full mt-4">
-					<div className="flex flex-row items-center space-x-2">
-						<input type="checkbox" className="w-4 h-4 accent-mainColor  " />
-						<label className="text-secondBlack text-sm">Remember me</label>
-					</div>
-					<Link
-						to="https://www.google.com"
-						className="text-secondBlack text-sm hover:underline transition duration-300 ">
-						Forgot password?
-					</Link>
-				</div>
-				<div className="flex flex-col justify-center items-center  mt-8 w-full ">
+
+				<div className="flex flex-col justify-center items-center  mt-12 w-full ">
 					<button
 						onClick={onSubmit}
 						disabled={isLoading}

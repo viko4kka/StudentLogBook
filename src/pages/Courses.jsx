@@ -6,8 +6,8 @@ function Courses() {
 	const { data, isLoading, isError } = useCourses();
 
 	return (
-		<div className="px-20">
-			<div className="flex flex-col gap-y-1 items-center w-full mt-6 px-4 bg-white shadow rounded py-1">
+		<div className="px-28">
+			<div className="flex flex-col gap-y-1 items-center w-full mt-6 px-6 bg-white shadow rounded py-8">
 				<p className="flex justify-start w-full text-secondBlack text-2xl py-2">
 					Your subjects
 				</p>
@@ -18,6 +18,7 @@ function Courses() {
 				) : data.data.length > 0 ? (
 					data.data.map((course) => (
 						<ListCourses
+							id={course.id}
 							key={course.id}
 							title={course.title}
 							description={course.description}
@@ -29,7 +30,7 @@ function Courses() {
 					<p className="text-lg text-gray-500 py-4">No subjects available.</p>
 				)}
 
-				{/* <Pagination  /> */}
+				{/* <Pagination /> */}
 			</div>
 			<AddCourse />
 		</div>

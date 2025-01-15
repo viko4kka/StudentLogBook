@@ -23,6 +23,11 @@ function App() {
 				<ReactQueryDevtools initialIsOpen={false} />
 				<BrowserRouter>
 					<Routes>
+						<Route index path="/" element={<Login />} />
+
+						<Route path="login" element={<Login />} />
+						<Route path="register" element={<Register />} />
+
 						<Route path="dashboard" element={<Dashboard />}>
 							<Route path="courses" element={<Courses />} />
 							<Route path="courses/:courseId" element={<Course />} />
@@ -30,9 +35,7 @@ function App() {
 							<Route path="settings" element={<Settings />} />
 							<Route path="grades" element={<Grades />} />
 						</Route>
-						
-						<Route path="login" element={<Login />} />
-						<Route path="register" element={<Register />} />
+
 						<Route path="*" element={<PageNotFound />} />
 					</Routes>
 				</BrowserRouter>
