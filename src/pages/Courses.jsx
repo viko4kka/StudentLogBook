@@ -5,9 +5,9 @@ import ListCourses from "../ui/ListCourses";
 import { useQueryClient } from "@tanstack/react-query";
 
 function Courses() {
-	const { data, isLoading, isError } = useCourses();
 	const queryClient = useQueryClient();
 	const user = queryClient.getQueryData({ queryKey: ["user"] });
+	const { data, isLoading, isError } = useCourses();
 
 	console.log(user);
 

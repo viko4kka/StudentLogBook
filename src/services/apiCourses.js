@@ -1,6 +1,7 @@
 import { urlRegister } from "./apiAuth";
 
-export async function getCourses() {
+export async function getCourses(role) {
+	console.log(role);
 	try {
 		const response = await fetch(urlRegister + "/course/all-courses");
 
