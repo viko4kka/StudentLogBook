@@ -2,8 +2,14 @@ import { BarLoader } from "react-spinners";
 import AddCourse from "../features/courses/AddCourse";
 import { useCourses } from "../features/courses/useCourses";
 import ListCourses from "../ui/ListCourses";
+import { useQueryClient } from "@tanstack/react-query";
+
 function Courses() {
 	const { data, isLoading, isError } = useCourses();
+	const queryClient = useQueryClient();
+	const user = queryClient.getQueryData({ queryKey: ["user"] });
+
+	console.log(user);
 
 	return (
 		<div className="px-28">
@@ -18,6 +24,7 @@ function Courses() {
 				) : data.data.length > 0 ? (
 					data.data.map((course) => (
 						<ListCourses
+							course={course}
 							id={course.id}
 							key={course.id}
 							title={course.title}
@@ -29,10 +36,8 @@ function Courses() {
 				) : (
 					<p className="text-lg text-gray-500 py-4">No subjects available.</p>
 				)}
-
-				{/* <Pagination /> */}
 			</div>
-			<AddCourse />
+			{user.data.role !== "student" && <AddCourse />}
 		</div>
 	);
 }

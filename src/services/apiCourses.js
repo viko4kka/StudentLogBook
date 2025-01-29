@@ -146,3 +146,32 @@ export async function getAllStudents() {
 		throw error;
 	}
 }
+
+export async function addStudentInCourse({ studentsIds, courseId }) {
+	const addedStudent = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			studentsIds,
+			courseId,
+		}),
+	};
+
+	try {
+		const response = await fetch(
+			urlRegister + "/course/student/add",
+			addedStudent
+		);
+
+		if (!response.ok) {
+			throw new Error(`Błąd: ${response.status} - ${response.statusText}`);
+		}
+
+		return await response.json();
+	} catch (error) {
+		console.error("Błąd podczas dodawania studenta do kursu:", error);
+		throw error;
+	}
+}
