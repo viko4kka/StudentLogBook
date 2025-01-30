@@ -29,3 +29,11 @@ Nauczyciel, posiadający odpowiednią rolę, ma pełny dostęp do zarządzania p
 
 ## UI/UX 
 Do interfejsu użytkownika wykorzystywane są **modale** do wyświetlania formularzy (np. do rejestracji, logowania, dodawania kursów), co zapewnia estetyczne i intuicyjne zarządzanie danymi bez przeładowywania strony. Aplikacja używa Tailwind CSS do stylowania, co pozwala na szybkie dostosowanie wyglądu aplikacji. W zależności od roli użytkownika, aplikacja dynamicznie zmienia dostępne opcje. Dodatkowo, aplikacja posiada stronę 404, która jest wyświetlana, gdy użytkownik próbuje przejść do nieistniejącej strony.
+
+## Instrukcja uruchomienia projektu
+1. Klonowanie repo
+   git clone <url_repo>
+2. Instalacja zależności
+   npm install
+3. Uruchomienie
+   npm run dev   
